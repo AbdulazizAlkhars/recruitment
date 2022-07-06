@@ -1,13 +1,11 @@
 import random
-from unicodedata import name
-
-mylist = ["Python", "C++", "JavaScript", "Meeting", "Leeting", "Eating"]
 
 
 def get_skills():
     # Add at least 3 random skills for the user to select from
-    randomList = random.choices(mylist, weights=[1, 1, 1, 1, 1, 1], k=3)
-    return randomList
+    # randomList = random.choices(mylist, weights=[1, 1, 1, 1, 1, 1], k=3)
+    mylist = ["Python", "C++", "JavaScript", "Meeting", "Leeting", "Eating"]
+    return mylist
 
 
 def show_skills(skills):
@@ -18,7 +16,7 @@ def show_skills(skills):
         print(f"{i+1}.{skills[i]}")
 
 
-def get_user_skills():
+def get_user_skills(skills):
     # Show the available skills and have user pick from them
     # Write your code here
     choosenSkill1 = False
@@ -28,7 +26,7 @@ def get_user_skills():
     while choosenSkill1 == False:
         skill1 = input("Choose a skill from above by entering its number:")
         if int(skill1) in indexList:
-            skill1 = str(mylist[int(skill1)-1])
+            skill1 = str(skills[int(skill1)-1])
             choosenSkillsList.append(skill1)
             choosenSkill1 = True
         else:
@@ -37,7 +35,7 @@ def get_user_skills():
         skill2 = input(
             "Choose another skill from above by entering its number:")
         if int(skill2) in indexList:
-            skill2 = str(mylist[int(skill2)-1])
+            skill2 = str(skills[int(skill2)-1])
             choosenSkillsList.append(skill2)
             choosenSkill2 = True
         else:
@@ -51,6 +49,7 @@ def get_user_cv(skills):
     # Write your code here
     cv = {'name': input("What's your name?"), 'age': int(input(
         "How old are you?")), 'experience': int(input("How many years of experience do you have?")), 'skills': skills}
+
     return cv
 
 
@@ -58,7 +57,7 @@ def check_acceptance(cv, desired_skill):
     # Check if the cv is acceptable or not and return a boolean based on that
     # Write your code here
     checkAcceptance = False
-    if cv.get('age') < 40 and cv.get('age') > 25 and cv.get('experience') > 3 and any(item in desired_skill for item in mylist):
+    if cv.get('age') < 40 and cv.get('age') > 25 and cv.get('experience') > 3 and any(item in desired_skill for item in get_skills()):
 
         checkAcceptance = True
     else:
@@ -69,9 +68,11 @@ def check_acceptance(cv, desired_skill):
 def main():
     # Write your main logic here by combining the functions above into the
     # desired outcome
+
     print("Welcome to the special recruitment program, please answer the following questions:")
-    show_skills(mylist)
-    desired_skills = get_user_skills()
+    getSkills = get_skills()
+    showSkills = show_skills(getSkills)
+    desired_skills = get_user_skills(getSkills)
     cv = get_user_cv(desired_skills)
     checkAcceptance = check_acceptance(cv=cv, desired_skill=desired_skills)
     if checkAcceptance == True:

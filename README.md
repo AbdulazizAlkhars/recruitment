@@ -33,7 +33,7 @@ In this example, the user entered their name, age, years of experience, and chos
 
 ## Steps:
 
-1. In the `get_skills` function, add at least 3 random skills to the list
+1. In the `get_skills` function, add at least 3 `random` skills to the list
 2. In the `show_skills` function, print all the skills to the user, so that we can call this function before prompting the user to select from them.
     - The printed skills should be listed in a shape of an ordered list from 1 ... `n`, where n is the length of the list (look into `enumerate`).
 3. In the `get_user_skills`, show the `skills` (received from the parameter) to the user. Prompt the user to select 2 `skills` and return the two `skills` the user selected in a list.
