@@ -56,8 +56,9 @@ def get_user_cv(skills):
 def check_acceptance(cv, desired_skill):
     # Check if the cv is acceptable or not and return a boolean based on that
     # Write your code here
+    mySkill = get_skills()
     checkAcceptance = False
-    if cv.get('age') < 40 and cv.get('age') > 25 and cv.get('experience') > 3 and any(item in desired_skill for item in get_skills()):
+    if cv.get('age') < 40 and cv.get('age') > 25 and cv.get('experience') > 3 and mySkill[2] in desired_skill:
 
         checkAcceptance = True
     else:
@@ -78,7 +79,7 @@ def main():
     if checkAcceptance == True:
         print(f"You have been accepted, {cv.get('name').title()}")
     else:
-        pass
+        print(f"You have NOT been accepted, {cv.get('name').title()}")
 
 
 if __name__ == "__main__":
